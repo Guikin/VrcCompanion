@@ -7,6 +7,8 @@ const session = require("express-session")
 const passport =require("passport")
 var indexRouter = require('./routes/index');
 var allworldsRouter = require('./routes/allWorld');
+const commentsRouter = require("./routes/comments")
+const methodOverride = require("method-override")
 require("dotenv").config()
 require('./config/database');
 require('./config/passport');
@@ -29,9 +31,11 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(methodOverride("_method"))
 
 app.use('/', indexRouter);
 app.use('/VrcCompanion', allworldsRouter);
+app.use("/VrcCompanion",commentsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

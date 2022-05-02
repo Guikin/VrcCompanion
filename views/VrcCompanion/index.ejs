@@ -1,15 +1,21 @@
 
 <%- include("../partials/navbar")%>
 <body>
-    <div class="container">
-    <h2>cool</h2>
-    <!-- <h2>Vrc companion</h2>
-    <%//worlds.forEach(world =>{%>
-        <p><%=//world.name%></p>
-        <br>
-    <%//})%> -->
+    <div class="container my-5 ">
+    <%worlds.forEach(world =>{%>
+        <div class="d-flex my-5">
+            <img src="<%=world.thumbnailImageUrl%>" alt="">
+                <div class="m-5">
+                <h4><%=world.name%></h4>
+                
+                <p>Author : <%=world.authorName%></p>   
+                <p>Favorites : <%=world.favorites%></p>
+                <p>Popularity : <%=world.popularity%></p>
+                <a href="/VrcCompanion/<%=world.id%>">More info</a>
+                </div>
+        </div>
+    <%})%>
     </div>
-
 
 </body>
 </html>

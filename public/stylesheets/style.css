@@ -5,7 +5,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: 100vh;
+  height: 100%;  
+  background-repeat: no-repeat;
+  background-size: contain;
+  background: var(--bg-color--);
+  color: white;
+
 }
 
 a {
@@ -13,7 +18,13 @@ a {
 }
 
 .bgGradient{
+  color: white;
   background-repeat: no-repeat;
   background-size: cover;
-  background: var(--bg-color--);
+  height: 100vh;
+}
+
+img{
+width:300px;
+border-radius: 20px;
 }

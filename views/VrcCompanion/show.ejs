@@ -1,0 +1,33 @@
+<%-include("../partials/navbar")%>
+
+<div class="border border-primary rounded-3" style="margin-top:50px"  >
+    <div class="d-flex m-5" >
+        <img src="<%=world.thumbnailImageUrl%>" alt="">
+            <div class="m-5">
+            <h4><%=world.name%></h4>
+            <p>Author : <%=world.authorName%></p> 
+            <p>Description : <%=world.description%></p>  
+            <p>Favorites : <%=world.favorites%></p>
+            <p>Popularity : <%=world.popularity%></p>
+            </div>
+    </div>
+
+    <div class="m-5">
+    <p>Comments</p>
+    
+    <%comments.forEach(comment =>{%>
+       
+        <p><%=comment.date.toDateString()%></p>
+        <p><%=comment.comment%></p>
+        <form action="<%=world.id%>/comments" method="POST">
+            <button>X</button>
+        </form>
+    <%})%>
+
+    <form action="<%=world.id%>/comments" method="POST">
+        <input type="text" name="comment" id="Comment" required>
+        <button>Add comment</button>
+     </form>
+    </div>
+
+</div>
