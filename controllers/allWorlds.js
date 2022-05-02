@@ -1,5 +1,7 @@
 require("dotenv").config();
-const vrchat = require("../vrchat")
+// const vrchat = require("../vrchat")
+const User = require("../models/user")
+
 
 
 module.exports={
@@ -9,11 +11,14 @@ module.exports={
 
 
 async function index(req,res,){
-    let AllWorlds = await vrchat.WorldsApi.searchWorlds("false","popularity","friends","", 12)
+    // let AllWorlds = await vrchat.WorldsApi.searchWorlds("false","popularity","friends","", 12)
+    // let worlds = AllWorlds.data   
+
     
-    let worlds = AllWorlds.data   
-    console.log(worlds)
-    res.render("VrcCompanion/index",{worlds})
+    res.render("VrcCompanion/index",{
+        user: req.user,
+        name: req.query.name,
+    })
 }
 
 
