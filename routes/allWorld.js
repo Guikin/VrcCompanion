@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-const allWorldsCtrl = require("../controllers/allWorlds")
+const allWorldsCtrl = require("../controllers/allWorlds");
+const app = require('../server');
 
 
 // World Detail Oauth Routing
@@ -39,7 +40,6 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-
 
 
 /* GET Worlds listing. */

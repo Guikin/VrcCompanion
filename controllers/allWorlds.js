@@ -1,5 +1,5 @@
 require("dotenv").config();
-// const vrchat = require("../vrchat")
+const vrchat = require("../vrchat")
 const User = require("../models/user")
 const Comment = require("../models/comments")
 const Rating = require("../models/ratings")
@@ -17,32 +17,47 @@ module.exports={
 
 
 async function index(req,res,){
-    // let AllWorlds = await vrchat.WorldsApi.searchWorlds("false","magic","friends","",)
-    // let worlds = AllWorlds.data   
+    let offset = req.query.offset * 10 || 0
+    let page = 1
+    let trending = false || true 
+    let sort = req.query.sort || "popularity"
+    let worldName = req.query.worldName || ""
+    
 
+    let AllWorlds = await vrchat.WorldsApi.searchWorlds("false",`${sort}`,"friends","",10,"descending",offset,`${worldName}`)
+    let worlds = AllWorlds.data   
+    
+    let limit =  await vrchat.WorldsApi.searchWorlds("false",`${sort}`,"friends","",50,"descending",0,`${worldName}`)
+    let limitPage=Math.ceil(((limit.data).length)/10)
+    console.log(limitPage)
 
-    worldsTemplate.worlds.forEach(world => {
-       let date = world.publicationDate
-       const newDate = date.substring(0, Math.min(date.length, 10));
-       world.publicationDate = newDate
-    })
+    
 
-    // worlds.forEach(world => {
-    //     let date = world.publicationDate
-    //     const newDate = date.substring(0, Math.min(date.length, 10));
-    //     world.publicationDate = newDate
-    //  })
+    // worldsTemplate.worlds.forEach(world => {
+    //    let date = world.publicationDate
+    //    const newDate = date.substring(0, Math.min(date.length, 10));
+    //    world.publicationDate = newDate
+    // })
 
+    worlds.forEach(world => {
+        let date = world.publicationDate
+        const newDate = date.substring(0, Math.min(date.length, 10));
+        world.publicationDate = newDate
+     })
+     
     res.render("VrcCompanion/index",{
         user: req.user,
         name: req.query.name,
-        worlds: worldsTemplate.worlds
+        worlds: worlds,
+        worldName,
+        limitPage
     })
 }
 
 async function show(req,res){
-    // let world = await vrchat.WorldsApi.getWorld(req.params.id)
-    // console.log(world.data)
+
+    let world = await vrchat.WorldsApi.getWorld(req.params.id)
+    console.log(world)
 
     // let worldRating = await Rating.find({worldId:req.params.id})
     // console.log(worldRating)
@@ -66,11 +81,11 @@ async function show(req,res){
     let visited = await Rating.findOne(user.id)
       
 
-    let world= worldsTemplate.justB
+    // let world= worldsTemplate.justB
     res.render("VrcCompanion/show",{
         user: req.user,
         name: req.query.name,
-        world,//world
+        world: world.data,//world //world.data
         comments:worldComment,
         rating:averageRating,
         ratingNumber,

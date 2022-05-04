@@ -1,5 +1,5 @@
 const Comment = require("../models/comments")
-// const vrchat = require("../vrchat")
+const vrchat = require("../vrchat")
 const User = require("../models/user")
 const worldsTemplate = require("../seed");
 const Rating =require ("../models/ratings")

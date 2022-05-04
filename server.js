@@ -19,7 +19,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine','ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,7 +36,13 @@ app.use(passport.session())
 app.use(methodOverride("_method"))
 
 // app.use('/', indexRouter);
-app.use('/', allworldsRouter);
+
+app.use(sortWorld)
+function sortWorld(req,res,next){
+  console.log(req.query)
+  next()
+}
+app.use('/',allworldsRouter);
 app.use("/",commentsRouter)
 app.use("/",ratingsRouter)
 
