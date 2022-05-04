@@ -20,6 +20,65 @@ p {
   text-decoration: none;
 }
 
+.checked{
+  color: yellow;
+}
+
+.fa-heart:hover{
+  color: rgb(0, 195, 255);
+}
+
+
+/* star rating */
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+  width: 100px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  margin-right: 90px;
+  position: relative;
+  
+}
+
+.rating > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.2em;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: relat;
+  left: 0;
+  color: #ffffff;
+}
+
+
+
 .bgGradient{
   color: white;
   background-repeat: no-repeat;

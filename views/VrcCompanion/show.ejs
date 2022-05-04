@@ -2,15 +2,77 @@
 
 <div class="border border-primary rounded-3 worldBg" style="margin-top:50px"  >
     <div class="d-flex m-5" >
-        <img src="<%=world.thumbnailImageUrl%>" alt="">
-            <div class="m-5">
+        <div>
+            <img src="<%=world.thumbnailImageUrl%>" alt="">
+            <div class="m-5 d-flex flex-column">
+                <div>
+                    Rating (<%=ratingNumber%>) : 
+                    <% if (rating>0){%>
+                        <span class="fa fa-star 1 checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star 1"></span>
+                    <%}%>
+
+                    <% if (rating>1){%>
+                        <span class="fa fa-star 1 checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star 1"></span>
+                    <%}%>
+
+                    <% if (rating>2){%>
+                        <span class="fa fa-star 1 checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star 1"></span>
+                    <%}%>
+
+                    <% if (rating>3){%>
+                        <span class="fa fa-star 1 checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star 1"></span>
+                    <%}%>
+
+                    <% if (rating>4){%>
+                        <span class="fa fa-star 1 checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star 1"></span>
+                    <%}%>
+                    
+                </div>
+
+                            <div class="txt-center my-3 ">
+                                <p class=" m-0 w-50 text-center">Your Rating :</p> 
+                                <form action="<%=world.id%>/rating" method="POST">
+                                    <div class="rating ">
+                                        <input id="star5" name="rating" type="radio" value="5" class=" radio-btn hide" />
+                                        <label for="star5">☆</label>
+                                        <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
+                                        <label for="star4">☆</label>
+                                        <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
+                                        <label for="star3">☆</label>
+                                        <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
+                                        <label for="star2">☆</label>
+                                        <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
+                                        <label for="star1">☆</label>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <button class="mx-3">rate</button>
+                                </form>
+                            </div>
+                            
+                        
+                    
+                
+            </div>
+        </div>
+        <div class="m-5">
             <h4><%=world.name%></h4>
             <p>Author : <%=world.authorName%></p> 
             <p>Description : <%=world.description%></p>  
             <p>Favorites : <%=world.favorites%></p>
             <p>Popularity : <%=world.popularity%></p>
-            </div>
+        </div>
     </div>
+
 
     <div class="m-5">
     <p>Comments</p> 
