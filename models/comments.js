@@ -4,6 +4,7 @@ const commentSchema = new mongoose.Schema({
     comment:String,
     date:Date,
     worldId:String,
+    user:String
 },{timeStamps:true,})
 
 module.exports= mongoose.model("Comment",commentSchema)

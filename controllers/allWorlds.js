@@ -6,6 +6,7 @@ const Rating = require("../models/ratings")
 
 const worldsTemplate = require("../seed");
 const comments = require("../models/comments");
+const user = require("../models/user");
 
 
 module.exports={
@@ -57,11 +58,13 @@ async function show(req,res){
     let allrating =0
      worldRating.forEach(rating =>{
          allrating+=rating.rating    
-    })
+         })
     let averageRating =Math.round(allrating / worldRating.length)
-        console.log(averageRating)
+        
         let ratingNumber = worldRating.length
     
+    let visited = await Rating.findOne(user.id)
+      
 
     let world= worldsTemplate.justB
     res.render("VrcCompanion/show",{
@@ -70,7 +73,8 @@ async function show(req,res){
         world,//world
         comments:worldComment,
         rating:averageRating,
-        ratingNumber
+        ratingNumber,
+        visited
     })
 }
 

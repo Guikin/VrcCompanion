@@ -1,10 +1,10 @@
 <%-include("../partials/navbar")%>
 
 <div class="border border-primary rounded-3 worldBg" style="margin-top:50px"  >
-    <div class="d-flex m-5" >
-        <div>
+    <div class="worldSection d-flex" >
+        <div style="width: 20%;">
             <img src="<%=world.thumbnailImageUrl%>" alt="">
-            <div class="m-5 d-flex flex-column">
+            <div class="ratingSection my-5 d-flex flex-column">
                 <div>
                     Rating (<%=ratingNumber%>) : 
                     <% if (rating>0){%>
@@ -36,35 +36,61 @@
                     <%}else{%>
                         <span class="fa fa-star 1"></span>
                     <%}%>
-                    
+
                 </div>
 
-                            <div class="txt-center my-3 ">
-                                <p class=" m-0 w-50 text-center">Your Rating :</p> 
-                                <form action="<%=world.id%>/rating" method="POST">
-                                    <div class="rating ">
-                                        <input id="star5" name="rating" type="radio" value="5" class=" radio-btn hide" />
-                                        <label for="star5">☆</label>
-                                        <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
-                                        <label for="star4">☆</label>
-                                        <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
-                                        <label for="star3">☆</label>
-                                        <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
-                                        <label for="star2">☆</label>
-                                        <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
-                                        <label for="star1">☆</label>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <button class="mx-3">rate</button>
+                <% if (user){%>
+                            <div class="txt-center my-2">
+                                <div>
+                                    <p class=" m-0 ">Your Rating :</p>                  
+                                    <%if (!visited){%>
+                                    <form action="<%=world.id%>/rating" method="POST">
+                                        <div class="rating ">
+                                            <input id="star5" name="rating" type="radio" value="5" class=" radio-btn hide" />
+                                            <label for="star5">☆</label>
+                                            <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
+                                            <label for="star4">☆</label>
+                                            <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
+                                            <label for="star3">☆</label>
+                                            <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
+                                            <label for="star2">☆</label>
+                                            <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
+                                            <label for="star1">☆</label>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <button class="my-1">rate</button>
+                                    </form>
+                                <%}else{%>
+                                    <form action="<%=world.id%>/rating?_method=PUT" method="POST">
+                                        <div class="rating ">
+                                            <input id="star5" name="rating" type="radio" value="5" class=" radio-btn hide" />
+                                            <label for="star5">☆</label>
+                                            <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
+                                            <label for="star4">☆</label>
+                                            <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
+                                            <label for="star3">☆</label>
+                                            <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
+                                            <label for="star2">☆</label>
+                                            <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
+                                            <label for="star1">☆</label>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <button class="my-1">Update</button>
+                                    </form>
+                                <%}%>
+                                </div>
+                                <form  class="my-2"action="<%=world.id%>/rating?_method=DELETE" method="POST">
+                                    <button>Remove</button>
                                 </form>
                             </div>
+                        <%}%>
                             
                         
                     
                 
             </div>
         </div>
-        <div class="m-5">
+        <div class="mx-5">
             <h4><%=world.name%></h4>
             <p>Author : <%=world.authorName%></p> 
             <p>Description : <%=world.description%></p>  
@@ -74,12 +100,12 @@
     </div>
 
 
-    <div class="m-5">
+    <div class="mx-5">
     <p>Comments</p> 
     
     <form action="<%=world.id%>/comments" method="POST">
         <input type="text" name="comment" id="Comment" required>
-        <button>Add comment</button>
+        <button>Post</button>
      </form>
     </div>
     
@@ -91,6 +117,8 @@
         <p><%=comment.comment%></p>
        </div>
 
+       <%if(user){%>
+        <%if(comment.user === user.id){%>
         <div class="dropdown mx-5">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
               
@@ -106,6 +134,8 @@
                 <input type="text"name="comment" class="bg-dark border border-none border-dark text-light text-center" placeholder="Edit Comment" required>
                 <button class="dropdown-item">Apply</button>
                 </form>
+                <%}%>
+            <%}%>
              
              
                   

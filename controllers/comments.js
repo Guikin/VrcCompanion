@@ -15,6 +15,7 @@ module.exports={
 async function create(req,res){
     req.body.worldId = req.params.id
     req.body.date = new Date()
+    req.body.user = req.user.id
     const saveComment = await new Comment(req.body)
     await saveComment.save()
     
