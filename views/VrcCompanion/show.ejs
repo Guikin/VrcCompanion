@@ -1,7 +1,7 @@
 <%-include("../partials/navbar")%>
 
-<div class="border border-primary rounded-3 worldBg" style="margin-top:50px"  >
-    <div class="worldSection d-flex" >
+<div class="border border-secondary rounded-3 worldBg">
+    <div class="worldSection d-block d-xl-flex" >
         <div >
             <img src="<%=world.thumbnailImageUrl%>" alt="">
             <div class="ratingSection my-5 d-flex flex-column">
@@ -38,7 +38,6 @@
                     <%}%>
 
                 </div>
-
                 <% if (user){%>
                             <div class="txt-center my-2">
                                 <div>
@@ -58,7 +57,7 @@
                                             <label for="star1">☆</label>
                                             <div class="clear"></div>
                                         </div>
-                                        <button class="my-1">rate</button>
+                                        <button class="my-1 button">rate</button>
                                     </form>
                                 <%}else{%>
                                     <form action="<%=world.id%>/rating?_method=PUT" method="POST">
@@ -75,78 +74,91 @@
                                             <label for="star1">☆</label>
                                             <div class="clear"></div>
                                         </div>
-                                        <button class="my-1">Update</button>
+                                        <button class="my-1 button">Update</button>
                                     </form>
                                 <%}%>
                                 </div>
                                 <form  class="my-2"action="<%=world.id%>/rating?_method=DELETE" method="POST">
-                                    <button>Remove</button>
+                                    <button class="button">Remove</button>
                                 </form>
                             </div>
                         <%}%>
             </div>
         </div>
+        <div>
         <div class="mx-5">
-            <h4><%=world.name%></h4>
-            <p>Author : <%=world.authorName%></p> 
-            <p>Description : <%=world.description%></p>  
+            <h3 class="display-4 "><%=world.name%></h3>
+            <hr/>
+            <p class="lead">Author : <%=world.authorName%></p> 
+            <p class="description">Description : <%=world.description%></p>  
             <p>Favorites : <%=world.favorites%></p>
             <p>Popularity : <%=world.popularity%></p>
+
+            <form action="favorites/<%=world.id%>/" method="POST">
+                <button class="button">Add to <br> My Favorites</button>
+            </form>
         </div>
-    </div>
-
-
-    <div class="mx-5">
-    <p>Comments</p> 
-    
-    <form action="<%=world.id%>/comments" method="POST">
-        <input type="text" name="comment" id="Comment" required>
-        <button>Post</button>
-     </form>
-    </div>
-    
-    <div class="m-5">
-    <%comments.forEach(comment =>{%>
-       <div class="d-flex"> 
-        <div class="commentSection">
-        <p><%=comment.date.toDateString()%></p>
-        <p><%=comment.comment%></p>
-       </div>
-
-       <%if(user){%>
-        <%if(comment.user === user.id){%>
-        <div class="dropdown mx-5">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-              
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-              <li>
-                <form class=" text-center" action="<%=comment.id%>/comments?_method=DELETE" method="POST">
-                <button class="dropdown-item">Delete Comment</button>
-                </form>
-             </li>
-
-             <form class="drop-down-item text-center" action="<%=comment.id%>/comments?_method=PUT" method="POST">
-                <input type="text"name="comment" class="bg-dark border border-none border-dark text-light text-center" placeholder="Edit Comment" required>
-                <button class="dropdown-item">Apply</button>
+        
+            <div class="mx-5 pb-4"><hr/>
+                <p class="lead">Comments</p> 
+                <%if(user){%>
+                
+                <form action="<%=world.id%>/comments" method="POST">
+                    <input type="text" name="comment" id="Comment" placeholder="Let us know what you think!" required>
+                    <button class="button">Post</button>
                 </form>
                 <%}%>
-            <%}%>
-             
-             
- 
-            </ul>
-        </div>
-        </div>
+                </div>
+                
+                
+                <div class="my-3">
+                    <div class="Overflow overflow-auto">
+                <%comments.forEach(comment =>{%>
+                <div class="d-flex justify-content-between"> 
+                    <%if(user){%>
+                        <div class="commentSection mx-5">
+                    <%}else{%>
+                        <div class="commentSection ">
+                    <%}%>
+                    <div>
+                        <div class="d-flex align-items-end">
+                        <p class="lead m-0 pe-3"><%=comment.userName%></p>
+                        <p class="m-0"><%=comment.date.toDateString()%></p>
+                        </div>
+                        <p><%=comment.comment%></p>
+                    </div>
+                    <hr/>
+                    
+                </div>
 
-            
-           
+                <%if(user){%>
+                    <%if(comment.userId === user.id){%>
+                    <div class="dropdown mx-5">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li>
+                            <form class=" text-center" action="<%=comment.id%>/comments?_method=DELETE" method="POST">
+                            <button class="dropdown-item">Delete Comment</button>
+                            </form>
+                        </li>
 
-        
-        
-        
-    <%})%>
+                        <form class="drop-down-item text-center" action="<%=comment.id%>/comments?_method=PUT" method="POST">
+                            <input type="text"name="comment" class="bg-dark border border-none border-dark text-light text-center" placeholder="Edit Comment" required>
+                            <button class="dropdown-item">Apply</button>
+                            </form>
+                            </ul>
+                            <%}%>
+                            </div>
+                        <%}%>   
+                    </div>  
+                <%})%>
+                </div>
+            </div>
+            </div>
     </div>
-   
-
 </div>
+
+
+    

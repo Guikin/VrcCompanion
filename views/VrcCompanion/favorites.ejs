@@ -1,0 +1,22 @@
+<%- include("../partials/navbar")%>
+<body>
+
+    <div class="worldSection m-sm-5">
+    
+    <h2 class="m-sm-5 display-4"><%=user.name%>'s Favorites</h2>
+    <hr/>
+    <div class="d-flex flex-wrap" style="max-width:fit-content">
+    <%allWorlds.forEach(world=>{%>
+        <div class="mx-5">
+            <p class="lead"><%=world.name%></p>
+            <hr/>
+            <a href="/<%=world.id%>"><img class="" src="<%=world.thumbnailImageUrl%> "alt="">
+            </a>
+            <!-- <form class="my-3"action="/<%=world.id%>/delete?_method=DELETE" method="POST">
+                <button class="button ">Delete</button>
+            </form> -->
+    </div>
+    <%})%>
+   </div>
+</div>
+</body>

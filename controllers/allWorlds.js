@@ -18,7 +18,6 @@ module.exports={
 
 async function index(req,res,){
     let offset = req.query.offset * 10 || 0
-    let page = 1
     let trending = false || true 
     let sort = req.query.sort || "popularity"
     let worldName = req.query.worldName || ""
@@ -57,7 +56,7 @@ async function index(req,res,){
 async function show(req,res){
 
     let world = await vrchat.WorldsApi.getWorld(req.params.id)
-    console.log(world)
+    
 
     // let worldRating = await Rating.find({worldId:req.params.id})
     // console.log(worldRating)
@@ -65,6 +64,9 @@ async function show(req,res){
     let worldComment = await Comment.find({worldId:req.params.id})
     worldComment.reverse()
 
+    worldComment.forEach(comment=>{
+        console.log(comment)
+    })
     
     // Rating section
     let worldRating =await Rating.find({worldId:req.params.id})

@@ -13,12 +13,12 @@ module.exports={
 async function create(req,res){
     req.body.worldId = req.params.id
     req.body.date = new Date()
-    req.body.user = req.user.id
+    req.body.userName = req.user.name
+    req.body.userId= req.user.id
     const saveComment = await new Comment(req.body)
     await saveComment.save()
-    
     let newComment = await Comment.find({})
-    console.log(newComment)
+    
     res.redirect(`/${req.params.id}`)
 }
 
