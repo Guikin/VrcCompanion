@@ -93,10 +93,11 @@
             <p class="description">Description : <%=world.description%></p>  
             <p>Favorites : <%=world.favorites%></p>
             <p>Popularity : <%=world.popularity%></p>
-
+            <%if (user){%>
             <form action="favorites/<%=world.id%>/" method="POST">
                 <button class="button">Add to <br> My Favorites</button>
             </form>
+        <%}%>
         </div>
         
             <div class="mx-5 pb-4"><hr/>
