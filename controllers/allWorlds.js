@@ -22,7 +22,9 @@ async function index(req,res,){
     let sort = req.query.sort || "popularity"
     let worldName = req.query.worldName || ""
     
+    try{
 
+    
     let AllWorlds = await vrchat.WorldsApi.searchWorlds("false",`${sort}`,"friends","",10,"descending",offset,`${worldName}`)
     let worlds = AllWorlds.data   
     
@@ -51,6 +53,10 @@ async function index(req,res,){
         worldName,
         limitPage
     })
+ }catch(err){
+     console.log(err)
+     res.send(" sad face")
+ }
 }
 
 async function show(req,res){
