@@ -5,7 +5,7 @@ const configuration = new vrchat.Configuration({
     password: process.env.PASS_WORD,
     apikey: process.env.API_KEY
 });
-console.log("Hopium")
+console.log("Copium")
 const AuthenticationApi = new vrchat.AuthenticationApi(configuration);
 const UsersApi = new vrchat.UsersApi(configuration);
 const SystemApi = new vrchat.SystemApi(configuration);
