@@ -1,6 +1,6 @@
 <%-include("../partials/navbar")%>
 
-<div class="border border-secondary rounded-3 worldBg">
+<div class="border border-secondary rounded-3 worldBg transition-fade fade-in" id="swup">
     <div class="worldSection d-block d-xl-flex" >
         <div >
             <img src="<%=world.thumbnailImageUrl%>" alt="">
@@ -89,8 +89,8 @@
         <div class="mx-5">
             <h3 class="display-4 "><%=world.name%></h3>
             <hr/>
-            <p class="lead">Author : <%=world.authorName%></p> 
-            <p class="description">Description : <%=world.description%></p>  
+            <p class="lead">Author :<%=world.authorName%></p> 
+            <p class="description">Description : <%=world.description%> </p>  
             <p>Favorites : <%=world.favorites%></p>
             <p>Popularity : <%=world.popularity%></p>
             <%if (user){%>
@@ -159,6 +159,7 @@
             </div>
             </div>
     </div>
+ </div>
 </div>
 
 

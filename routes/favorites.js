@@ -4,6 +4,6 @@ const favoritesCtrl = require("../controllers/favorites")
 
 router.post("/favorites/:id",favoritesCtrl.create)
 router.get("/favorites/user/:id",favoritesCtrl.show)
-router.delete("/:id/delete",favoritesCtrl.delete)
+router.delete("/favorites/user/:id/del",favoritesCtrl.delete)
 
 module.exports=router

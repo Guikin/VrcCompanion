@@ -32,7 +32,7 @@
 
     </form>
 
-    <div class="container grid my-5 ">
+    <div class="container grid my-5 transition-fade fade-in" id="swup">
     <%worlds.forEach(world =>{%>
         <div class="d-sm-flex my-4">
             <img src="<%=world.thumbnailImageUrl%>" alt="">
@@ -42,11 +42,13 @@
                 <p>Favorites : <%=world.favorites%></p>
                 <p>Popularity : <%=world.popularity%></p>
                 <p>Published Date : <%=world.publicationDate%></p>
-                <a class="a" href="/<%=world.id%>"><p class="button">More info</p></a>
+                <a class="a" href="/<%=world.id%>"><p class="button info">More info</p></a>
                 </div>
         </div>
     <%})%>
     </div>
 
+
 </body>
+
 </html>

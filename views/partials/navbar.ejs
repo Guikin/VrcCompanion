@@ -16,12 +16,13 @@
     <link rel="icon" href="data:;base64,=">
 
     <script defer src="/javascripts/apps.js"></script>
+    
 
     <title>VRcCompanion</title>
 
 </head>
 <body class="bgGradient ">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark  fixed-top w-100 m-auto px-5" style="box-shadow:0 0 3em black">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top w-100 m-auto px-5" style="box-shadow:0 0 3em black">
             <a class="navbar-brand" href="/">
                 <img src="https://cdn.discordapp.com/attachments/963368879927730188/971311104871530527/vrctitle.png" alt="Bootstrap" style="width:150px;height:50px" class="d-inline-block align-top">
                 <!-- <span class="hidden">Bootstrap</span> -->
@@ -40,6 +41,9 @@
             <div class="collapse navbar-collapse" id="toggleMobileMenu">
             
                 <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
 
                     <li class="nav-item">
                         <% if(user){ %>
@@ -59,3 +63,4 @@
         </nav>
       
 </body>
+

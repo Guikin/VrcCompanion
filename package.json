@@ -22,6 +22,7 @@
     "passport": "^0.5.2",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",
+    "swup": "^2.0.14",
     "vrchat": "^1.7.1"
   }
 }

@@ -10,6 +10,7 @@ var allworldsRouter = require('./routes/allWorld');
 const commentsRouter = require("./routes/comments")
 const ratingsRouter = require("./routes/ratings")
 const favoritesRouter = require("./routes/favorites")
+const aboutRouter = require("./routes/about")
 const methodOverride = require("method-override");
 
 require("dotenv").config()
@@ -38,11 +39,12 @@ app.use(methodOverride("_method"))
 
 // app.use('/', indexRouter);
 
-
+app.use("/",aboutRouter)
 app.use('/',allworldsRouter);
 app.use("/",commentsRouter)
 app.use("/",ratingsRouter)
 app.use("/",favoritesRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
