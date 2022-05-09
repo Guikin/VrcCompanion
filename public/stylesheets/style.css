@@ -183,6 +183,7 @@ border: var(--glass-border--);
 
 @media only screen and (max-width: 600px) {
   .searchBox{
-    width: 100%;
+    max-width: 100%;
+    margin:20px 0px
   }
 }

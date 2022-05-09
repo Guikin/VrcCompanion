@@ -16,7 +16,7 @@ async function create(req,res){
    req.body.user = req.user.id
     const savedRating = await new Rating (req.body)
     await savedRating.save()
-    res.redirect(`/${req.params.id}`)
+    res.redirect(`/${req.params.id}`,)
 }
 
 async function deleteRating(req,res){

@@ -4,6 +4,11 @@ const passport = require('passport');
 const allWorldsCtrl = require("../controllers/allWorlds");
 const app = require('../server');
 
+const multer = require("multer");
+const upload = multer({ dest: 'uploads/'});
+
+router.post('/upload/:id', upload.single('image'), allWorldsCtrl.upload)
+
 
 // World Detail Oauth Routing
 // router.get("/VrcCompanion/auth/google",passport.authenticate("google",{scope:["profile","email"]}

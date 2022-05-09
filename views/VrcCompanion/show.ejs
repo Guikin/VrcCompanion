@@ -7,7 +7,7 @@
             <div class="ratingSection my-5 d-flex flex-column">
                 <div>
                     Rating (<%=ratingNumber%>) : 
-                    <% if (rating>0){%>
+                    <% if (rating > 0){%>
                         <span class="fa fa-star 1 checked"></span>
                     <%}else{%>
                         <span class="fa fa-star 1"></span>
@@ -76,11 +76,11 @@
                                         </div>
                                         <button class="my-1 button">Update</button>
                                     </form>
-                                <%}%>
-                                </div>
-                                <form  class="my-2"action="<%=world.id%>/rating?_method=DELETE" method="POST">
+                                    <form  class="my-2"action="<%=world.id%>/rating?_method=DELETE" method="POST">
                                     <button class="button">Remove</button>
                                 </form>
+                                <%}%>
+                                </div>
                             </div>
                         <%}%>
             </div>
@@ -159,6 +159,17 @@
             </div>
             </div>
     </div>
+
+    <%images.forEach(image =>{%>
+        <img src="<%=image.imageLink%>" alt="">
+    <%})%>
+
+    <%if(user){%>
+    <form action="/upload/<%=world.id%>" method="POST" enctype="multipart/form-data">
+        <input type="file" name='image'>
+        <button class="button">Post Picture</button>
+      </form>
+    <%}%>
  </div>
 </div>
 
