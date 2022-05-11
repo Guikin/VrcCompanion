@@ -22,7 +22,7 @@ async function create(req,res){
     res.redirect(`/${req.params.id}`)
 }
 
-
+console.log("good")
 async function deleteComment(req,res){
     let comment =  await Comment.findByIdAndDelete(req.params.id)
     res.redirect(`/${comment.worldId}`)
