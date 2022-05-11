@@ -15,14 +15,14 @@ async function create(req,res){
     let user = await User.findById(req.user.id)
     user.favorites.push(world.data)
     await user.save()
-    console.log(console.log("this is the user" + user))
+    
     res.redirect(`/${req.params.id}`)
 }
 
 async function show(req,res){
     let user = await User.findById(req.user.id)
     let allWorlds = user.favorites 
-    console.log(allWorlds)
+    
 
         res.render("VrcCompanion/favorites",{
         user: req.user,
@@ -33,6 +33,6 @@ async function show(req,res){
 }
 
 async function deleteFavorite(req,res){
-    
-    res.redirect(`favorites/user/${req.user.id}`)
+    console.log("reached delete")
+    res.redirect(`/favorites/user/${req.user.id}`)
 }

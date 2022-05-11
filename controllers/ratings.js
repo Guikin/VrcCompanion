@@ -26,6 +26,6 @@ async function deleteRating(req,res){
 
 async function update(req,res){
     let rating =  await Rating.findOneAndUpdate({user:req.user.id},req.body)
-    console.log(rating)
+    
     res.redirect(`/${rating.worldId}`)
 }

@@ -85,7 +85,7 @@ async function index(req,res,){
     
     let limit =  await vrchat.WorldsApi.searchWorlds("false",`${sort}`,"friends","",50,"descending",0,`${worldName}`)
     let limitPage=Math.ceil(((limit.data).length)/10)
-    console.log(limitPage)
+    
 
     
     
@@ -132,7 +132,7 @@ async function show(req,res){
     worldComment.reverse()
 
     worldComment.forEach(comment=>{
-        console.log(comment)
+        
     })
     
     // Rating section
@@ -148,10 +148,10 @@ async function show(req,res){
         let ratingNumber = worldRating.length
     
     let visited = await Rating.findOne(user.id)
-    console.log(visited)
+    
 
     let images = await Images.find({WorldId:req.params.id})
-    console.log(images)
+    
 
 
     // let world= worldsTemplate.justB
