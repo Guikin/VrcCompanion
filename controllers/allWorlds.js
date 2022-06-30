@@ -6,7 +6,6 @@ const Rating = require("../models/ratings")
 const Images = require("../models/images")
 const worldsTemplate = require("../seed");
 const comments = require("../models/comments");
-const user = require("../models/user");
 const request = require('request');
 const fs = require('fs');
 
@@ -16,8 +15,6 @@ module.exports={
     show,
     upload
 }
-
-
 
 
 function base64_encode(image) {
@@ -60,7 +57,7 @@ const options = {
     // Mongoose query here to save to db
     // body.data.link points to imgur url
     const newImage = new Images(image)
-
+    console.log(newImage)
     newImage.save(function(err){
     fs.unlink(req.file.path,function(err){
         if(err) return console.log(err)
@@ -147,7 +144,8 @@ async function show(req,res){
         
         let ratingNumber = worldRating.length
     
-    let visited = await Rating.findOne(user.id)
+    let rated = await Rating.find({user:User.id, worldId:req.params.id})
+    console.log(rated)
     
 
     let images = await Images.find({WorldId:req.params.id})
@@ -162,7 +160,7 @@ async function show(req,res){
         comments:worldComment,
         rating:averageRating,
         ratingNumber,
-        visited,
+        rated,
         images
     })
 }

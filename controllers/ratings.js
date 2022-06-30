@@ -20,12 +20,15 @@ async function create(req,res){
 }
 
 async function deleteRating(req,res){
+    req.body.worldId = req.params.id 
+    req.body.user = req.user.id
     let rating =  await Rating.findOneAndDelete({user:req.user.id})
     res.redirect(`/${rating.worldId}`)
 }
 
 async function update(req,res){
+    req.body.worldId = req.params.id 
+    req.body.user = req.user.id
     let rating =  await Rating.findOneAndUpdate({user:req.user.id},req.body)
-    
     res.redirect(`/${rating.worldId}`)
 }
